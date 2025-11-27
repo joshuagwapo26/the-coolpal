@@ -1,0 +1,269 @@
+    <!DOCTYPE html><html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Group Portfolio</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: white;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background: darkblue;
+            color: white;
+            
+            padding: 50px;
+            text-align: center;
+            
+        .center-img {
+            text-align: center;
+            margin: 20px 0;
+         }
+
+       .center-img img {
+            width: 150px;   /* adjust size */
+            height: auto;
+            border-radius: 10px;  /* optional */
+}
+
+            
+        }
+        .container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            padding: 30px;
+        }
+        .member {
+            background: lightblue;
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            transition: 0.3s;
+            cursor: pointer;
+        }
+        .member:hover {
+            transform: scale(1.05);
+        }
+        .member img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 8px;
+        }
+        /* Popup */
+        .popup {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            display: none;
+            justify-content: center;
+            align-items: center;
+        }
+        .popup-content {
+            background: lightblue;
+            padding: 30px;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 400px;
+            text-align: center;
+            animation: fadeIn 0.3s ease;
+        }
+        .popup-content img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin-bottom: 15px;
+        }
+        .social-links a {
+            margin: 0 10px;
+            text-decoration: none;
+            font-size: 20px;
+            color: #333;
+        }
+        .close {
+            margin-top: 15px;
+            padding: 8px 20px;
+            background: #1e1e1e;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Our Group Portfolio</h1>
+        <div class="center-img">
+    <img src="group.jpg" alt="">
+</div>
+        <p>Click a profile to know more about us</p>
+    </header><div class="container">
+    <div class="member" onclick="openPopup(0)">
+        <img src="joshpogi.jpg" alt="Leader">
+        <h3>Joshua Bryan M. Lunop</h3>
+    </div>
+    <div class="member" onclick="openPopup(1)">
+        <img src="daniel.jpg" alt="Member">
+        <h3>Daniel Marana</h3>
+    </div>
+    <div class="member" onclick="openPopup(2)">
+        <img src="arjay.jpg" alt="Member">
+        <h3>Carmelo Pacamarra III</h3>
+    </div>
+    <div class="member" onclick="openPopup(3)">
+        <img src="orbito.jpg" alt="Member 4">
+        <h3>Alexander Orbito</h3>
+    </div>
+    <div class="member" onclick="openPopup(4)">
+        <img src="albano.jpg" alt="Member 5">
+        <h3>Immanuel Albano</h3>
+    </div>
+</div>
+
+<!-- Popup -->
+<div class="popup" id="popup">
+    <div class="popup-content" id="popupContent">
+        <img id="popupImg" src="" />
+        <h2 id="popupName"></h2>
+
+        <button class="close" onclick="openAbout()" style="margin-bottom:15px; padding:10px 20px; background:#007bff; color:white; border:none; border-radius:10px; cursor:pointer;">About Me</button>
+
+        <h3>Skills</h3>
+        <p id="popupSkills"></p>
+
+        <div class="social-links" id="popupSocials"></div>
+
+        <button class="close" onclick="closePopup()">Close</button>
+    </div>
+</div>
+
+<!-- ABOUT POPUP -->
+<div class="popup" id="aboutPopup">
+    <div class="popup-content">
+        <h2>About Me</h2>
+        <p id="aboutText"></p>
+        <button class="close" onclick="closeAbout()">Close</button>
+    </div>
+</div>
+
+<!-- Hidden audio element for profile music -->
+<audio id="profileMusic" preload="none" style="display: none;"></audio>
+
+<script>
+    const members = [
+        {
+            name: "Joshua Bryan Lunop",
+            img: "joshpogi.jpg",
+            about: "Hi, I'm Joshua Bryan M. Lunop, a second-year college student currently pursuing a degree in Information Technology.I’m passionate about exploring how technology shapes the world, and I enjoy learning new skills—especially in programming, web development, and digital design.",
+            skills: "Problem solving, Adaptability, Teamwork",
+            music: "joshua.mp3", 
+            socials: {
+                fb: "https://www.facebook.com/joshuabryan26",
+                ig: "https://www.instagram.com/joshualunop/",
+                tiktok: "https://l.facebook.com/l.php?u=https%3A%2F%2Fwww.tiktok.com%2F%40bryanjoshuaaaa%3F_r%3D1%26_t%3DZS-910aXUMjlib&h=AT0tzA_Ob0R7p1sgrB52wq_7Z-3OzXWTelqQ6A2SqpuR8wq_X98I1Jgvn0DGReYibY8ZFO-dAsRo5RO2avhVs2Gl3kINha7KeQHrYqjxTBKwEWdA2aBwkEnZ0h48gJc&s=1"
+            }
+        },
+        {
+            name: "Daniel Marana",
+            img: "daniel.jpg",
+            about: "Hello! I'm Daniel Maraña, 20 years old from Puelay, Villasis, Pangasinan. I love playing basketball and exploring new things in tech. My goal is to become a developer, creating useful and innovative solutions that can help people.",
+            skills: "Editing, UI Design",
+            music: "daniel.mp3",
+            socials: {
+                fb: "https://www.facebook.com/share/14P1czcJcjn/",
+                ig: "https://www.instagram.com/blck_shdow9/",
+                tiktok: "https://l.facebook.com/l.php?u=https%3A%2F%2Fwww.tiktok.com%2F%40danielmarania%3F_r%3D1%26_t%3DZS-913UlW16hBB&h=AT0oGoN5rORVNALUNoHuVgF1ZCj3wepHLMq6Dk9OYlS49Z6-ZHP9banL4ly8waqjv2XOMZI6W4v2Q3yDvdKcebUAGu0AVrtNB8tK_PzGL-EFl4a8qmZncZuZ0JFgiOc&s=1"
+            }
+        },
+        {
+            name: "Carmelo Pacamarra III",
+            img: "arjay.jpg",
+            about: "Hi! I’m Carmelo Pacamarra III, 19 years old and currently living in Sto. Tomas, Pangasinan. I enjoy playing basketball, spending time on online games, and watching movies during my free time. I’m aiming to become a Web Developer, where I can create engaging and functional websites while improving my skills in the world of technology.",
+            skills: "Web Developer, Database",
+            music: "arjay.mp3", 
+            socials: {
+                fb: "https://www.facebook.com/share/15r8DFh5mk/",
+                ig: "https://www.instagram.com/_wrldof.arjay?igsh=MWFzMXpyZjVscWx0MQ==",
+                tiktok: "https://www.tiktok.com/@arjaypacamarra11?_r=1&_t=ZS-91XnCgD3207"
+            }
+        },
+        {
+             name: "Alexander Orbito",
+            img: "orbito.jpg",
+            about: "Hi! I'm Alexander Orbito, a 20-year-old from Rosales, Pangasinan. I enjoy spending my free time playing online games, which also inspires my passion for technology. I’m aiming to become a developer, where I can turn ideas into real projects and improve my skills in the IT field.",
+            skills: "Photoshop, Layouting",
+            music: "orbito.mp3",
+            socials: {
+                fb: "https://www.facebook.com/share/1ADgPfZa9R/",
+                ig: "https://www.instagram.com/yvo.lex/",
+                tiktok: "https://www.tiktok.com/@yv.alex?_r=1&_t=ZS-91XrVgiKDmK"
+            }
+        },
+        {
+            name: "Immanuel Albano",
+            img: "albano.jpg",
+            about: "Hey! I’m Immanuel Albany, 21 years old from Consolacion, Urdaneta City, Pangasinan. Basketball is one of my favorite hobbies, and it keeps me motivated and disciplined. I aspire to be a developer, where I can build, design, and bring digital ideas to life.",
+            skills: "Video Editing, Animation",
+            music: "albano.mp3",
+            socials: {
+                fb: "https://www.facebook.com/immanuel.albano.2025",
+                ig: "instagram://user/?username=eman32092&igsh=YTlyNWZ3YnY5cTJo",
+                tiktok: "https://www.tiktok.com/@_eman070?_r=1&_t=ZS-91dWwqbOjeW&fbclid=IwY2xjawOPwY1leHRuA2FlbQIxMABicmlkETFSMDBTQWVaQnZsY1p4RDNac3J0YwZhcHBfaWQQMjIyMDM5MTc4ODIwMDg5MgABHl00HOZbDsL-iyuCoYk3TuQYQ3K-YTovlzLicBAJSGb1KRWTwT9gYwfjOmWO_aem_BVsYoLJ4M3DZ65UAUoir_A"
+            }
+        }
+    ];
+
+    function openPopup(i) {
+        const m = members[i];
+        window.currentMember = m;
+        document.getElementById("popupImg").src = m.img;
+        document.getElementById("popupName").innerText = m.name;
+        document.getElementById("popupSkills").innerText = m.skills;
+
+        document.getElementById("popupSocials").innerHTML = `
+            <a href="${m.socials.fb}" target="_blank">FB</a>
+            <a href="${m.socials.ig}" target="_blank">IG</a>
+            <a href="${m.socials.tiktok}" target="_blank">TikTok</a>`;
+
+        // Play the member's music
+        const audio = document.getElementById("profileMusic");
+        audio.src = m.music;
+        audio.play();
+
+        document.getElementById("popup").style.display = "flex";
+    }
+
+    function closePopup() {
+        // Stop the music when closing the popup
+        const audio = document.getElementById("profileMusic");
+        audio.pause();
+        audio.currentTime = 0;
+
+        document.getElementById("popup").style.display = "none";
+    }
+
+    function openAbout() {
+        document.getElementById("aboutText").innerText = window.currentMember.about;
+        document.getElementById("aboutPopup").style.display = "flex";
+    }
+
+    function closeAbout() {
+        document.getElementById("aboutPopup").style.display = "none";
+    }
+</script>
+
+</body>
+</html>
