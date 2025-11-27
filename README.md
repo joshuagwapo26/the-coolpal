@@ -1,1 +1,1 @@
-# the-coolpal
+# the-coolpal.github.io
